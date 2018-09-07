@@ -1,12 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>zero</title>
-<link href="../static/main.css" rel="stylesheet" style=":text/css" />
+<meta charset="utf-8">
+<title>BBS</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/reset.css" />
+    <script src="../static/js/main.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-<div class="table"> <h1>{{ data }}</h1> <a href="index/info"></a></div>
+    <div id="web_div" class="default">
+        <h1 id="web_type_1">BBS</h1>
+        <input id="web_type_3" placeholder="搜一搜">
+    </div>
+    <hr>
+    <div id="title_div" class="default">
+        <h3 id="title_type_1" class="default"><a href="index.html">文章</a></h3>
+        <h3 id="title_type_2" class="default"><a href="index.html">图片</a></h3>
+        <h3 id="title_type_3" class="default"><a href="index.html">资讯</a></h3>
+    </div>
+    <hr/>
+    <div id="content_div">
+        {% for d in data %}
+            <p>{{ d.title }}</p>
+            <p>{{ d.hot }}</p>
+        {% endfor %}
+
+        <div>
+            <span>
+                <br>
+                <br>
+                <br>
+                <br>
+                <p id="page">页数&nbsp;&nbsp; </p>
+                {% if previous %}
+                <a id="link_1" href="?page={{ previous }}">上一页&nbsp; &nbsp; </a>
+                {% endif %}
+                <p id="link_1"> {{ current_page }}&nbsp; &nbsp;  </p>
+                {% if next_page %}
+                <a id="link_1" href="?page={{ next_page }}"> 下一页&nbsp; &nbsp; </a>
+                {% endif %}
+                <p>总页数&nbsp;{{ total_page }}</p>
+
+            </span>
+        </div>
+    </div>
 
 </body>
 </html>

@@ -1,0 +1,456 @@
+body {
+    width: 100%;
+    margin: 0 auto;
+}
+
+input {
+    height: 25px;
+    width: 45px;
+    border-radius: 4px;
+    border: 1px solid #00DFA3;
+    color: #00DFA3;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+td {
+    width: 100px;
+    height: 25px;
+    text-align: center;
+    border: 1px solid #000;
+}
+
+.head {
+    width: 100%;
+    height: 40px;
+    background-color: #00DFA3;
+}
+
+.listbox {
+    position: relative;
+    margin: 30px auto;
+    width: 1200px;
+    padding: auto;
+    /*text-align: center;*/
+}
+
+.jurisdiction {
+    position: relative;
+    position: absolute;
+    top: 10px;
+}
+
+.newAdd {
+    position: absolute;
+    top: 40px;
+
+}
+
+.upfile {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    width: 100px;
+}
+
+.seachBox {
+    position: absolute;
+    top: 40px;
+    left: 654px;
+}
+
+.seachTxt {
+    width: 150px;
+    padding-left: 5px;
+}
+
+.idListBox {
+    position: absolute;
+    top: 80px;
+
+}
+
+.downUrl,
+.idNumber,
+.newId,
+.newId,
+.remark,
+.toUrl {
+    width: 100px;
+    border: none;
+    text-align: center;
+    cursor: auto;
+}
+
+.remark {
+    width: 150px;
+}
+
+.downUrl,
+.toUrl {
+    width: 200px;
+}
+
+.current {
+    border: 1px solid #00DFA3;
+    color: #00DFA3;
+
+}
+
+.onOffBox input {
+    width: 20px;
+    height: 12px;
+    display: none;
+}
+
+.on {
+    display: none;
+}
+
+.platform {
+    width: 150px;
+}
+
+.onOffChange,
+.changePlatform {
+    width: 13px;
+    text-align: center;
+    border: none;
+    cursor: auto;
+}
+
+.changePlatform {
+    width: 55px;
+}
+
+.onOffChange.current,
+.changePlatform.current {
+    color: #00DFA3;
+    cursor: pointer;
+}
+
+/*.remark{
+   width: 100px;
+   text-align: center;
+   border: none;
+}*/
+.redact, #delete {
+    cursor: pointer;
+    color: #2b2bff;
+}
+
+.cancelDelete,
+.redactConfirm {
+    width: 40px;
+    border: none;
+    display: none;
+    cursor: pointer;
+}
+
+.cancelDelete img,
+.redactConfirm img {
+    width: 20px;
+    height: 15px;
+}
+
+.deleteList {
+    border: none;
+    width: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+.pagination {
+    position: absolute;
+    top: 270px;
+    left: 370px;
+    color: #bcbbbb;
+}
+
+#page-list {
+    display: inline-block;
+}
+
+.inPage {
+    color: black;
+}
+
+.pagination div,
+#page-list li {
+    margin-right: 5px;
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+#pagination_top {
+    background-image: url(../img/pagination_top.png);
+}
+
+#pagination_prev {
+    background-image: url(../img/pagination_prev.png);
+}
+
+#pagination_next {
+    background-image: url(../img/pagination_next.png);
+}
+
+#pagination_bottom {
+    background-image: url(../img/pagination_bottom.png);
+}
+
+#pageInput {
+    margin-right: 10px;
+    width: 36px;
+    height: 25px;
+    text-align: center;
+    border: 1px solid #bcbbbb;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+#page-jump {
+    width: 50px;
+    height: 25px;
+    color: #00dfa3;
+    border: 1px solid #00dfa3;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+/************    login start   ***********/
+.login-content {
+    width: 100%;
+    min-width: 1366px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.login-content > h2 {
+    margin-top: 70px;
+    margin-bottom: 42px;
+    font-size: 26px;
+    font-weight: normal;
+    color: #333;
+    text-align: center;
+}
+
+.login-userInput {
+    width: 640px;
+    height: 400px;
+    padding-top: 100px;
+    margin: auto;
+    border-radius: 5px;
+    border: 1px solid #008080;
+    display: block;
+}
+
+.login-username,
+.login-password {
+    position: relative;
+    width: 350px;
+    height: 76px;
+    margin: auto;
+}
+
+.login-username img,
+.login-password img {
+    position: absolute;
+    left: 0;
+    top: 0px;
+    display: block;
+    width: 26px;
+    height: 26px;
+}
+
+.login-userInput input {
+    display: block;
+    width: 350px;
+    height: 40px;
+    padding-bottom: 12px;
+    padding-left: 46px;
+    font-size: 16px;
+    color: #666;
+    border: none;
+    border-bottom: 1px solid #dedede;
+}
+
+.login-userInput .login-tips {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #f00;
+    text-align: center;
+}
+
+.login-userInput .submit {
+    display: block;
+    width: 350px;
+    height: 36px;
+    margin: 16px auto 0;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #00DFA3;
+    cursor: pointer;
+}
+
+/***********    login end     ************/
+
+/***********   changePswd start ***************/
+.toLogin,
+.changePswd {
+    position: absolute;
+    width: 100px;
+    right: 200px;
+    top: 8px;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.changePswd {
+    right: 70px;
+}
+
+.changeBox,
+.newAddBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    z-index: 100;
+    display: none;
+}
+
+.changeContent,
+.newAddContent {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    height: 430px;
+    margin-left: -238px;
+    width: 355px;
+    background-color: #fff;
+    z-index: 105;
+}
+
+.changeContent span,
+.newAddContent span {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid #00DFA3;
+}
+
+.changeContent input {
+    display: block;
+    height: 30px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    width: 380px;
+}
+
+.originalPswd {
+    margin-top: 30px;
+}
+
+.ensurePswd,
+.cancelPswd {
+    position: absolute;
+    left: 140px;
+    bottom: 40px;
+    width: 50px;
+    height: 30px;
+    font-size: 16px;
+    border: 1px solid #00DFA3;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #00DFA3;
+}
+
+.cancelPswd {
+    margin-left: 120px;
+}
+
+.originalPswdTip,
+.newPswdTip {
+    position: absolute;
+    width: 100%;
+    font-size: 12px;
+    color: #00DFA3;
+    text-align: center;
+    display: none;
+}
+
+/***********   changePswd end ***************/
+
+.newAddContent {
+    margin-left: -210px;
+    width: 420px;
+    height: 395px;
+}
+
+.newAddContent h1,
+.newAddContent input {
+    margin-left: 20px;
+}
+
+.newAddContent h1 {
+    margin-top: 10px;
+
+}
+
+.addDownUrl,
+.appId,
+.skipUrl,
+.toComment {
+    width: 370px;
+    padding-left: 5px;
+}
+
+.radioSkip,
+.radioPlatform {
+    width: 14px;
+    height: 14px;
+}
+
+.addBtn,
+.addClose {
+    position: absolute;
+    display: block;
+    width: 80px;
+    height: 30px;
+    bottom: 20px;
+    right: 30px;
+    color: #00DFA3;
+    background-color: #fff;
+    border: 1px solid #00DFA3;
+    border-radius: 4px;
+}
+
+.addBtn {
+    right: 90px;
+}
+
+/*style="padding: 5px 10px;background-color: #00dfa3;border-radius: 3px;margin-left: 10px"*/
+.page_btn {
+    padding: 5px 10px;
+    background-color: #00DFA3;
+    border-radius: 3px;
+}
+
+.page_btn:disabled {
+    padding: 5px 10px;
+    background-color: #12df3d;
+    border-radius: 3px;
+}

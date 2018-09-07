@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* reset css */
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea{margin:0;padding:0;}
+header,footer,aside,nav{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img{border:0;}
+i{font-style:normal;}
+[hidefocus],summary{outline:0; }
+li{list-style:none;}
+/*h1,h2,h3,h4,h5,h6,small{font-size:100%;}*/
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+button{border: 0;}
+/*h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:700;}*/
+del,ins,u,s,a,a:hover{text-decoration:none;}
+body,textarea,input,button,keygen,legend{color:#000;outline:0;}
+select{color:inherit;}
+body{background:#fff;}
+a,a:hover{color:inherit;}
+a,button,i {-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-moz-user-select: none;}
+a,button,i,input,select,div,span {font-family: "microsoft yahei"; -webkit-tap-highlight-color: rgba(255,255,255,0);}
+html{font:12px/1.5 "microsoft yahei","Helvetica Neue", Helvetica, Arial, sans-serif;color:#000; -webkit-text-size-adjust: none; -moz-text-size-adjust: none;-ms-text-size-adjust: none;}
+*{-webkit-box-sizing: border-box; box-sizing: border-box;}
+/*清除浮动*/
+.clearfix:after,.clearfix:before { content: ""; display: table;}
+.clearfix:after{ clear: both; }
+.clearfix { *zoom:1;}

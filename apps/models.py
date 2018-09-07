@@ -79,7 +79,7 @@ class CommonUser(models.Model):
         db_table = 'common_user'
 
 
-class CommotMovie(models.Model):
+class CommonMovie(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
     url = models.CharField(max_length=255, blank=True, null=True)
     image_url = models.CharField(max_length=255, blank=True, null=True)
@@ -92,7 +92,9 @@ class CommotMovie(models.Model):
     author = models.CharField(max_length=255, blank=True, null=True)
     performer = models.CharField(max_length=255, blank=True, null=True)
     director = models.CharField(max_length=255, blank=True, null=True)
+    show_time = models.IntegerField(blank=True, null=True)
+
 
     class Meta:
         managed = False
-        db_table = 'commot_movie'
+        db_table = 'common_movie'

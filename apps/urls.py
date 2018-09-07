@@ -17,6 +17,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r"^info$", views.InfoView.as_view(), name="info"),
-    url(r"", views.InfoView.as_view(), name="info"),
+    url(r"^movie$", views.MovieView.as_view(), name="movie"),
+    url(r"", views.MovieView.as_view(), name="info"),
 ]
