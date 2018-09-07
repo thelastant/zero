@@ -4,10 +4,7 @@
 }
 
 #web_div {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-left: 300px;
-    padding-right: 300px;
+    padding:30px 300px;
     background-color: ivory;
 }
 
