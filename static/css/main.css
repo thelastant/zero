@@ -67,15 +67,21 @@
 
 #page{
     float: left;
+    color:#09f;font-size: 19px;
 }
 
 #link_1{
     float: left;
+    color:#09f;font-size: 19px;
 }
 
 
-a {
-    text-decoration: none
+
+a{text-decoration: none; color:blue; font-size: 18px; font-family: 微软雅黑;}
+a:hover{color:#09f;font-size: 19px;}
+
+.title_list{
+        font-size: 19px;
 }
 
 hr {

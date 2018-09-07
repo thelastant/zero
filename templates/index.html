@@ -9,20 +9,20 @@
 </head>
 <body>
     <div id="web_div" class="default">
-        <h1 id="web_type_1">BBS</h1>
+        <h1 id="web_type_1">电影天堂</h1>
         <input id="web_type_3" placeholder="搜一搜">
     </div>
     <hr>
     <div id="title_div" class="default">
-        <h3 id="title_type_1" class="default"><a href="index.html">文章</a></h3>
+        <h3 id="title_type_1" class="default"><a href="index.html">电影</a></h3>
         <h3 id="title_type_2" class="default"><a href="index.html">图片</a></h3>
         <h3 id="title_type_3" class="default"><a href="index.html">资讯</a></h3>
     </div>
     <hr/>
     <div id="content_div">
         {% for d in data %}
-            <p>{{ d.title }}</p>
-            <p>{{ d.hot }}</p>
+            <p class="title_list">{{ d.title }}</p>
+            <p class="title_list">{{ d.hot }}</p>
         {% endfor %}
 
         <div>
@@ -39,7 +39,7 @@
                 {% if next_page %}
                 <a id="link_1" href="?page={{ next_page }}"> 下一页&nbsp; &nbsp; </a>
                 {% endif %}
-                <p>总页数&nbsp;{{ total_page }}</p>
+                <p id="link_1">总页数&nbsp;{{ total_page }}</p>
 
             </span>
         </div>

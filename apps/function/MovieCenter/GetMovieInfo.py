@@ -17,8 +17,6 @@ class GetMovieInfo(object):
     def deal_data(self):
         movie_obj = self.get_movie()
         self.total_page = int(self.data_count / self.rows)
-        print(">>>>>>>>>>>>>>>count",self.data_count,self.rows)
-        print('>>>>>>>>>>>>>>>>current', self.current, self.total_page)
         if self.current < self.total_page:
             next_page = self.current + 1
         else:
@@ -27,7 +25,6 @@ class GetMovieInfo(object):
             previous = self.current - 1
         else:
             previous = None
-        print(">>>>>>>>>>>>>>>>>>>next", previous, next_page)
         min_index = self.current * self.rows - 1
         max_index = (self.current + 1) * self.rows - 1
         data_list = movie_obj[min_index:max_index]
