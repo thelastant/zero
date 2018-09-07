@@ -27,13 +27,13 @@
     align-content: center;
 }
 
-#title_div {
-    padding: 0;
-    margin: 0;
-    padding-left: 300px;
-    padding-right: 300px;
-    background-color: azure;
-}
+/*#title_div {*/
+    /*padding: 0;*/
+    /*margin: 0;*/
+    /*padding-left: 300px;*/
+    /*padding-right: 300px;*/
+    /*background-color: azure;*/
+/*}*/
 
 #title_type_1 {
     float: left;
@@ -75,7 +75,7 @@
 
 
 a{text-decoration: none; color:blue; font-size: 18px; font-family: 微软雅黑;}
-a:hover{color:#09f;font-size: 19px;}
+/*a:hover{color:#09f;font-size: 19px;}*/
 
 .title_list{
         font-size: 19px;
