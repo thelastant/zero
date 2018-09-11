@@ -84,63 +84,83 @@ class MovieSpider():
             try:
                 download_url = html.xpath("//*[@id='Zoom']/table[1]/tbody/tr/td//a/text()")  # 电影的下载链接
             except:
-                pass
+                continue
             try:
                 movie_image_url = html.xpath("//p[1]/img/@src")  # 电影的封面图片链接
             except:
-                pass
+                movie_image_url = ""
             try:
                 movie_image2_url = html.xpath("//div/img/@src")  # 电影的内容介绍图片链接
             except:
-                pass
+                movie_image2_url = ""
             try:
                 movie_score = float(html.xpath("//div[2]/ul/div[1]/span[1]/strong/text()")[0])  # 电影评分
             except:
-                pass
+                movie_score=0
             # movie_type = html.xpath("//div[2]/ul/div[1]/span[2]/a/text()")  # 电影类型
             # movie_release_time = html.xpath("//div[6]/div[2]/ul/div[1]/span[3]/text()")  # 发布时间
             try:
                 movie_detail_info = html.xpath("//p[position()>2 and position()<20]/text()")  # 电影详细信息
+            except:
+                movie_detail_info = ""
+            try:
                 movie_index_name = html.xpath("//div[2]/div[6]/div[1]/h1/text()")  # 电影页面名称
             except:
-                pass
+                movie_index_name = ""
             try:
-
                 translate = movie_detail_info[0]
             except:
                 continue
             try:
                 movie_name = movie_detail_info[1]
+            except:
+                movie_name = ""
+            try:
                 release_time = movie_detail_info[2]
+            except:
+                release_time = 0
+            try:
                 area = movie_detail_info[2]  # movie_detail_info[3]
+            except:
+                area = ""
+            try:
                 movie_type2 = movie_detail_info[3]  # movie_detail_info[4]
+            except:
+                movie_type2 = ""
+            try:
                 language = movie_detail_info[4]  # movie_detail_info[5]
+            except:
+                language = ""
+            try:
                 subtitle = movie_detail_info[5]  # movie_detail_info[6]
+            except:
+                subtitle = ""
+            try:
                 release_detail_time = movie_detail_info[6]  # movie_detail_info[7]  # 需要正则去掉中文，再转成时间戳
             except:
-                pass
+                release_detail_time = ""
             # size = ''
             # time_long = movie_detail_info[12]  # movie_detail_info[13]
             # director = movie_detail_info[13]  # movie_detail_info[14]
             # performer = movie_detail_info[15]
-            if not translate:
-                translate = ""
-            if not movie_image_url:
-                movie_image_url = ""
-            if not movie_image2_url:
-                movie_image2_url = ""
-            if not movie_score:
-                movie_score = 8
-            if not area:
-                area = ''
-            if not language:
-                language = ""
-            if not release_detail_time:
-                release_detail_time = ""
-            if not download_url:
-                download_url = "暂无该资源"
-            if not movie_index_name:
-                movie_index_name = ""
+            # if not translate:
+            #     translate = ""
+            # if not movie_image_url:
+            #     movie_image_url = ""
+            # if not movie_image2_url:
+            #     movie_image2_url = ""
+            # if not movie_score:
+            #     movie_score = 8
+            # if not area:
+            #     area = ''
+            # if not language:
+            #     language = ""
+            # if not release_detail_time:
+            #     release_detail_time = ""
+            # if not download_url:
+            #     download_url = "暂无该资源"
+            # if not movie_index_name:
+            #     movie_index_name = ""
 
             if self.findFromDB(title_1=translate):
                 continue
