@@ -57,7 +57,7 @@ class MovieSpider():
             url += ".html"
             return url
 
-    def getDataById(self, movie_type="china", movie_num="4", movie_or_tv="gndy", page=2):
+    def getDataById(self, page=2):
         # if self.findFromDB(query_id=queryId):  # 在一个方法体内调用另一个方法
         #     return
         # url = self.make_url(movie_type, movie_num, movie_or_tv, page=page)  # 获取单页的电影列表链接
@@ -85,49 +85,85 @@ class MovieSpider():
             movie_image_url = html.xpath("//p[1]/img/@src")  # 电影的封面图片链接
             movie_image2_url = html.xpath("//div/img/@src")  # 电影的内容介绍图片链接
             movie_score = float(html.xpath("//div[2]/ul/div[1]/span[1]/strong/text()")[0])  # 电影评分
-            movie_type = html.xpath("//div[2]/ul/div[1]/span[2]/a/text()")  # 电影类型
-            movie_release_time = html.xpath("//div[6]/div[2]/ul/div[1]/span[3]/text()")  # 发布时间
+            # movie_type = html.xpath("//div[2]/ul/div[1]/span[2]/a/text()")  # 电影类型
+            # movie_release_time = html.xpath("//div[6]/div[2]/ul/div[1]/span[3]/text()")  # 发布时间
             movie_detail_info = html.xpath("//p[position()>2 and position()<20]/text()")  # 电影详细信息
             movie_index_name = html.xpath("//div[2]/div[6]/div[1]/h1/text()")  # 电影页面名称
 
             translate = movie_detail_info[0]
             movie_name = movie_detail_info[1]
             release_time = movie_detail_info[2]
-            area = movie_detail_info[2]       # movie_detail_info[3]
-            movie_type2 = movie_detail_info[3]    # movie_detail_info[4]
-            language = movie_detail_info[4]   # movie_detail_info[5]
+            area = movie_detail_info[2]  # movie_detail_info[3]
+            movie_type2 = movie_detail_info[3]  # movie_detail_info[4]
+            language = movie_detail_info[4]  # movie_detail_info[5]
             subtitle = movie_detail_info[5]  # movie_detail_info[6]
-            release_detail_time = movie_detail_info[6]   # movie_detail_info[7]  # 需要正则去掉中文，再转成时间戳
-            size = ''
-            time_long = movie_detail_info[12]  # movie_detail_info[13]
-            director = movie_detail_info[13]   # movie_detail_info[14]
-            performer = movie_detail_info[15]
+            release_detail_time = movie_detail_info[6]  # movie_detail_info[7]  # 需要正则去掉中文，再转成时间戳
+            # size = ''
+            # time_long = movie_detail_info[12]  # movie_detail_info[13]
+            # director = movie_detail_info[13]  # movie_detail_info[14]
+            # performer = movie_detail_info[15]
+            print(translate)
+            print(movie_image_url)
+            print(movie_image2_url)
+            print(movie_score)
+            print(release_time)
+            print(area)
+            print(movie_type2)
+            print(language)
+            print(subtitle)
+            print(release_detail_time)
+            print(download_url)
+            print(movie_index_name)
+            if not translate:
+                translate = ""
+            if not movie_image_url:
+                movie_image_url = ""
+            if not movie_image2_url:
+                movie_image2_url = ""
+            if not movie_score:
+                movie_score = 8
+            if not area:
+                area = ''
+            if not language:
+                language = ""
+            if not release_detail_time:
+                release_detail_time = ""
+            if not download_url:
+                download_url = "暂无该资源"
+            if not movie_index_name:
+                movie_index_name = ""
 
-            self.insertIntoDB(title_1=translate, title_2=movie_name, image_url_1=movie_image_url,
-                              image_url_2=movie_image2_url, score=movie_score, performer=performer, director=director,
-                              show_time=release_time, area=area, type=movie_type2, language=language, subtitle=subtitle,
-                              release_time=release_detail_time, size=size, time_long=time_long,
-                              download_url=download_url,remark=movie_index_name)
-            print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", movie_name)
+            if self.findFromDB(title_1=translate):
+                continue
+            try:
+                self.insertIntoDB(title_1=translate, image_url_1=movie_image_url,
+                                  image_url_2=movie_image2_url, score=movie_score, show_time=release_time, area=area,
+                                  type=movie_type2, language=language, subtitle=subtitle,
+                                  release_time=release_detail_time, download_url=download_url, remark=movie_index_name)
+                print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", translate, "---", movie_name)
+            except:
+                pass
 
-    def findFromDB(self, query_id):
-        db = pymysql.connect(host='localhost', user='root', passwd='', db='test', port=3306, charset='utf8')
+
+    def findFromDB(self, title_1):
+        db = pymysql.connect(host='45.63.51.252', user='root', passwd='123456', db='zoro', port=3306, charset='utf8')
         cursor = db.cursor()
-        sql = ' select * from amazon_aces where asin = %s '
-        cursor.execute(sql, (query_id))
+        sql = ' select * from common_movie where title_1 = %s '
+        cursor.execute(sql, (title_1))
         db.commit()
         cursor.close()
         db.close()
         return cursor.fetchone() is not None
 
-    def insertIntoDB(self, title_1, title_2, image_url_1, image_url_2, score, performer, director, show_time, area,
-                     type, language, subtitle, release_time, size, time_long, download_url, remark):
+    def insertIntoDB(self, title_1, image_url_1, image_url_2, score, show_time, area,
+                     type, language, subtitle, release_time, download_url, remark):
+        now = time.time()
         db = pymysql.connect(host='45.63.51.252', user='root', passwd='123456', db='zoro', port=3306, charset='utf8')
         cursor = db.cursor()
-        sql = " insert into common_movie(title_1,title_2,image_url_1, image_url_2, score,performer,director,show_time,area,type,language,subtitle,release_time,size,time_long,download_url,remark)  values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        sql = " insert into common_movie(title_1,image_url_1, image_url_2, score,show_time,area,type,language,subtitle,release_time,download_url,remark,create_time)  values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         cursor.execute(sql, (
-            title_1, title_2, image_url_1, image_url_2, score, performer, director, show_time, area, type, language,
-            subtitle, release_time, size, time_long, download_url, remark))
+            title_1, image_url_1, image_url_2, score, show_time, area, type, language,
+            subtitle, release_time, download_url, remark, now))
         db.commit()
         cursor.close()
         db.close()
@@ -227,4 +263,7 @@ class AmazonSpiderJob():
 # movie_obj = GetMovieInfo()
 # movie_obj.run()
 movie_obj = MovieSpider()
-movie_obj.getDataById()
+
+for i in range(2, 301):
+    print(i)
+    movie_obj.getDataById(page=i)

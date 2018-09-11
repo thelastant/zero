@@ -18,6 +18,7 @@ class CommonArticle(models.Model):
     remark = models.TextField(blank=True, null=True)
     image_id = models.IntegerField(blank=True, null=True)
     bed = models.IntegerField(blank=True, null=True)
+    create_time = models.DecimalField(blank=True, null=True)
 
     class Meta:
         managed = False
