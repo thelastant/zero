@@ -81,15 +81,29 @@ class MovieSpider():
             ret2 = ret2.text
             html = etree.HTML(ret2)
 
-            download_url = html.xpath("//*[@id='Zoom']/table[1]/tbody/tr/td//a/text()")  # 电影的下载链接
-            movie_image_url = html.xpath("//p[1]/img/@src")  # 电影的封面图片链接
-            movie_image2_url = html.xpath("//div/img/@src")  # 电影的内容介绍图片链接
-            movie_score = float(html.xpath("//div[2]/ul/div[1]/span[1]/strong/text()")[0])  # 电影评分
+            try:
+                download_url = html.xpath("//*[@id='Zoom']/table[1]/tbody/tr/td//a/text()")  # 电影的下载链接
+            except:
+                pass
+            try:
+                movie_image_url = html.xpath("//p[1]/img/@src")  # 电影的封面图片链接
+            except:
+                pass
+            try:
+                movie_image2_url = html.xpath("//div/img/@src")  # 电影的内容介绍图片链接
+            except:
+                pass
+            try:
+                movie_score = float(html.xpath("//div[2]/ul/div[1]/span[1]/strong/text()")[0])  # 电影评分
+            except:
+                pass
             # movie_type = html.xpath("//div[2]/ul/div[1]/span[2]/a/text()")  # 电影类型
             # movie_release_time = html.xpath("//div[6]/div[2]/ul/div[1]/span[3]/text()")  # 发布时间
-            movie_detail_info = html.xpath("//p[position()>2 and position()<20]/text()")  # 电影详细信息
-            movie_index_name = html.xpath("//div[2]/div[6]/div[1]/h1/text()")  # 电影页面名称
-
+            try:
+                movie_detail_info = html.xpath("//p[position()>2 and position()<20]/text()")  # 电影详细信息
+                movie_index_name = html.xpath("//div[2]/div[6]/div[1]/h1/text()")  # 电影页面名称
+            except:
+                pass
             translate = movie_detail_info[0]
             movie_name = movie_detail_info[1]
             release_time = movie_detail_info[2]
