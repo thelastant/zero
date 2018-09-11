@@ -104,14 +104,21 @@ class MovieSpider():
                 movie_index_name = html.xpath("//div[2]/div[6]/div[1]/h1/text()")  # 电影页面名称
             except:
                 pass
-            translate = movie_detail_info[0]
-            movie_name = movie_detail_info[1]
-            release_time = movie_detail_info[2]
-            area = movie_detail_info[2]  # movie_detail_info[3]
-            movie_type2 = movie_detail_info[3]  # movie_detail_info[4]
-            language = movie_detail_info[4]  # movie_detail_info[5]
-            subtitle = movie_detail_info[5]  # movie_detail_info[6]
-            release_detail_time = movie_detail_info[6]  # movie_detail_info[7]  # 需要正则去掉中文，再转成时间戳
+            try:
+
+                translate = movie_detail_info[0]
+            except:
+                continue
+            try:
+                movie_name = movie_detail_info[1]
+                release_time = movie_detail_info[2]
+                area = movie_detail_info[2]  # movie_detail_info[3]
+                movie_type2 = movie_detail_info[3]  # movie_detail_info[4]
+                language = movie_detail_info[4]  # movie_detail_info[5]
+                subtitle = movie_detail_info[5]  # movie_detail_info[6]
+                release_detail_time = movie_detail_info[6]  # movie_detail_info[7]  # 需要正则去掉中文，再转成时间戳
+            except:
+                pass
             # size = ''
             # time_long = movie_detail_info[12]  # movie_detail_info[13]
             # director = movie_detail_info[13]  # movie_detail_info[14]
@@ -154,7 +161,7 @@ class MovieSpider():
                                   image_url_2=movie_image2_url, score=movie_score, show_time=release_time, area=area,
                                   type=movie_type2, language=language, subtitle=subtitle,
                                   release_time=release_detail_time, download_url=download_url, remark=movie_index_name)
-                print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", translate, "---", movie_name)
+                print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", translate)
             except:
                 pass
 
