@@ -123,18 +123,6 @@ class MovieSpider():
             # time_long = movie_detail_info[12]  # movie_detail_info[13]
             # director = movie_detail_info[13]  # movie_detail_info[14]
             # performer = movie_detail_info[15]
-            print(translate)
-            print(movie_image_url)
-            print(movie_image2_url)
-            print(movie_score)
-            print(release_time)
-            print(area)
-            print(movie_type2)
-            print(language)
-            print(subtitle)
-            print(release_detail_time)
-            print(download_url)
-            print(movie_index_name)
             if not translate:
                 translate = ""
             if not movie_image_url:
