@@ -41,6 +41,34 @@ class CommonComment(models.Model):
         db_table = 'common_comment'
 
 
+class CommonMovie(models.Model):
+    title_1 = models.CharField(max_length=255, blank=True, null=True)
+    title_2 = models.CharField(max_length=255, blank=True, null=True)
+    image_url_1 = models.CharField(max_length=255, blank=True, null=True)
+    image_url_2 = models.CharField(max_length=240, blank=True, null=True)
+    hot = models.CharField(max_length=255, blank=True, null=True)
+    score = models.CharField(max_length=255, blank=True, null=True)
+    status = models.CharField(max_length=255, blank=True, null=True)
+    level = models.IntegerField(blank=True, null=True)
+    remark = models.CharField(max_length=255, blank=True, null=True)
+    author = models.CharField(max_length=255, blank=True, null=True)
+    performer = models.CharField(max_length=255, blank=True, null=True)
+    director = models.CharField(max_length=255, blank=True, null=True)
+    show_time = models.IntegerField(blank=True, null=True)
+    area = models.CharField(max_length=255, blank=True, null=True)
+    type = models.CharField(max_length=255, blank=True, null=True)
+    language = models.CharField(max_length=255, blank=True, null=True)
+    subtitle = models.CharField(max_length=255, blank=True, null=True)
+    release_time = models.CharField(max_length=255, blank=True, null=True)
+    size = models.CharField(max_length=255, blank=True, null=True)
+    time_long = models.CharField(max_length=255, blank=True, null=True)
+    download_url = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'common_movie'
+
+
 class CommonPicture(models.Model):
     id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=255, blank=True, null=True)
@@ -77,24 +105,3 @@ class CommonUser(models.Model):
     class Meta:
         managed = False
         db_table = 'common_user'
-
-
-class CommonMovie(models.Model):
-    title = models.CharField(max_length=255, blank=True, null=True)
-    url = models.CharField(max_length=255, blank=True, null=True)
-    image_url = models.CharField(max_length=255, blank=True, null=True)
-    brief = models.CharField(max_length=240, blank=True, null=True)
-    hot = models.CharField(max_length=255, blank=True, null=True)
-    score = models.CharField(max_length=255, blank=True, null=True)
-    status = models.CharField(max_length=255, blank=True, null=True)
-    level = models.IntegerField(blank=True, null=True)
-    remark = models.CharField(max_length=255, blank=True, null=True)
-    author = models.CharField(max_length=255, blank=True, null=True)
-    performer = models.CharField(max_length=255, blank=True, null=True)
-    director = models.CharField(max_length=255, blank=True, null=True)
-    show_time = models.IntegerField(blank=True, null=True)
-
-
-    class Meta:
-        managed = False
-        db_table = 'common_movie'

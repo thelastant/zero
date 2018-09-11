@@ -32,9 +32,7 @@ class GetMovieInfo(object):
 
         for data in data_list:
             movie_dict = {}
-            movie_dict["title"] = data.title
-            movie_dict["author"] = data.author
-            movie_dict["hot"] = data.hot
+            movie_dict["title"] = data.title_1
             movie_info_list.append(movie_dict)
         return {"total_page": self.total_page, "data": movie_info_list, "next_page": next_page, "previous": previous}
 
