@@ -262,8 +262,10 @@ class AmazonSpiderJob():
 #
 # movie_obj = GetMovieInfo()
 # movie_obj.run()
-movie_obj = MovieSpider()
+def run():
+    movie_obj = MovieSpider()
 
-for i in range(2, 301):
-    print(i)
-    movie_obj.getDataById(page=i)
+    for i in range(2, 301):
+        print(i)
+        movie_obj.getDataById(page=i)
+run()
