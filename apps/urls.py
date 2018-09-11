@@ -19,4 +19,5 @@ from . import views
 urlpatterns = [
     url(r"^movie$", views.MovieView.as_view(), name="movie"),
     url(r"", views.MovieView.as_view(), name="info"),
+    url(r"/spider$", views.start_spider(), name="spider"),
 ]

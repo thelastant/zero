@@ -263,9 +263,9 @@ class AmazonSpiderJob():
 # movie_obj = GetMovieInfo()
 # movie_obj.run()
 def run():
+    print("start spider====")
     movie_obj = MovieSpider()
-
     for i in range(2, 301):
         print(i)
         movie_obj.getDataById(page=i)
-run()
+    print("finish spider")

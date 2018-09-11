@@ -1,6 +1,7 @@
 from django.shortcuts import HttpResponse, render
 from django.views.generic import View
 from apps.function.MovieCenter.GetMovieInfo import GetMovieInfo
+from apps.getMovie.get_movie import run
 
 
 # Create your views here.
@@ -18,3 +19,9 @@ class MovieView(View):
         return render(request, 'index.html',
                       {"data": movie_info_list, "total_page": total_page, "current_page": current_page,
                        "next_page": next_page, "previous": previous})
+
+
+def start_spider():
+    run()
+    print("sdadadad")
+    return HttpResponse("start")
