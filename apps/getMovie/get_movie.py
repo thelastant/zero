@@ -170,10 +170,9 @@ class MovieSpider():
                     movie_index_name = ""
                 print(movie_index_name)
                 print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
-                if self.findFromDB(title_1=translate):
-                    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
-
-                    continue
+                # if self.findFromDB(title_1=translate):
+                #     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
+                #     continue
                 try:
                     self.insertIntoDB(title_1=translate, image_url_1=movie_image_url,
                                       image_url_2=movie_image2_url, score=movie_score, show_time=release_time,
@@ -182,7 +181,7 @@ class MovieSpider():
                                       release_time=release_detail_time, download_url=download_url,
                                       remark=movie_index_name)
                 except Exception as e:
-                    print(e)
+                    print(e,"fail to save into db!!!")
                 print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", translate)
 
     def findFromDB(self, title_1):
