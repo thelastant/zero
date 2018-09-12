@@ -166,6 +166,8 @@ class MovieSpider():
                     release_detail_time = ""
                 if not download_url:
                     download_url = "暂无该资源"
+                    print("暂无该资源")
+                    continue
                 if not movie_index_name:
                     movie_index_name = ""
                 if not release_time:
@@ -174,28 +176,13 @@ class MovieSpider():
                     movie_type2 = ""
                 if not subtitle:
                     subtitle = ""
-                print(movie_index_name,">>>>>>>>>>>>>1")
-                print(translate,">>>>>>>>>>>>>2")
-                print(movie_image_url,">>>>>>>>>>>>>3")
-                print(movie_image2_url,">>>>>>>>>>>>>4")
-                print(movie_score,">>>>>>>>>>>>>5")
-                print(area,">>>>>>>>>>>>>6")
-                print(language,">>>>>>>>>>>>>7")
-                print(release_detail_time,">>>>>>>>>>>>>8")
-                print(download_url,">>>>>>>>>>>>>9")
-                print(release_time,">>>>>>>>>>>>>10")
-                print(movie_type2,">>>>>>>>>>>>>11")
-                print(subtitle,">>>>>>>>>>>>>12")
                 # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
                 # if self.findFromDB(title_1=translate):
                 #     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
                 #     continue
                 try:
                     self.insertIntoDB(title_1=translate, image_url_1=movie_image_url,
-                                      image_url_2=movie_image2_url, score=movie_score, show_time=release_time,
-                                      area=area,
-                                      type=movie_type2, language=language, subtitle=subtitle,
-                                      release_time=release_detail_time, download_url=download_url,
+                                      score=movie_score, download_url=download_url,
                                       remark=movie_index_name)
                 except Exception as e:
                     print(e, translate, "fail to save into db!!!")
@@ -212,15 +199,14 @@ class MovieSpider():
         db.close()
         return cursor.fetchone() is not None
 
-    def insertIntoDB(self, title_1, image_url_1, image_url_2, score, show_time, area,
-                     type, language, subtitle, release_time, download_url, remark):
+    def insertIntoDB(self, title_1, image_url_1, score, download_url, remark):
         now = time.time()
         db = pymysql.connect(host='45.63.51.252', user='root', passwd='123456', db='zoro', port=3306, charset='utf8')
         cursor = db.cursor()
-        sql = " insert into common_movie(title_1,image_url_1, image_url_2, score,show_time,area,type,language,subtitle,release_time,download_url,remark,create_time)  values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        sql = "insert into common_movie(title_1,image_url_1,score,download_url,remark,create_time)  values(%s,%s,%s,%s,%s,%s)"
+        # sql2 = " insert into common_movie(title_1,image_url_1, image_url_2, score,show_time,area,type,language,subtitle,release_time,download_url,remark,create_time)  values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         cursor.execute(sql, (
-            title_1, image_url_1, image_url_2, score, show_time, area, type, language,
-            subtitle, release_time, download_url, remark, now))
+            title_1, image_url_1, score, download_url, remark, now))
         db.commit()
         cursor.close()
         db.close()
