@@ -168,17 +168,21 @@ class MovieSpider():
                     download_url = "暂无该资源"
                 if not movie_index_name:
                     movie_index_name = ""
+                print(movie_index_name)
                 print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
                 if self.findFromDB(title_1=translate):
                     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
 
                     continue
-                self.insertIntoDB(title_1=translate, image_url_1=movie_image_url,
-                                  image_url_2=movie_image2_url, score=movie_score, show_time=release_time,
-                                  area=area,
-                                  type=movie_type2, language=language, subtitle=subtitle,
-                                  release_time=release_detail_time, download_url=download_url,
-                                  remark=movie_index_name)
+                try:
+                    self.insertIntoDB(title_1=translate, image_url_1=movie_image_url,
+                                      image_url_2=movie_image2_url, score=movie_score, show_time=release_time,
+                                      area=area,
+                                      type=movie_type2, language=language, subtitle=subtitle,
+                                      release_time=release_detail_time, download_url=download_url,
+                                      remark=movie_index_name)
+                except Exception as e:
+                    print(e)
                 print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", translate)
 
     def findFromDB(self, title_1):
