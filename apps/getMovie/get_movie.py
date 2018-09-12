@@ -173,16 +173,13 @@ class MovieSpider():
                     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
 
                     continue
-                try:
-                    self.insertIntoDB(title_1=translate, image_url_1=movie_image_url,
-                                      image_url_2=movie_image2_url, score=movie_score, show_time=release_time,
-                                      area=area,
-                                      type=movie_type2, language=language, subtitle=subtitle,
-                                      release_time=release_detail_time, download_url=download_url,
-                                      remark=movie_index_name)
-                    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", translate)
-                except:
-                    pass
+                self.insertIntoDB(title_1=translate, image_url_1=movie_image_url,
+                                  image_url_2=movie_image2_url, score=movie_score, show_time=release_time,
+                                  area=area,
+                                  type=movie_type2, language=language, subtitle=subtitle,
+                                  release_time=release_detail_time, download_url=download_url,
+                                  remark=movie_index_name)
+                print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", translate)
 
     def findFromDB(self, title_1):
         db = pymysql.connect(host='45.63.51.252', user='root', passwd='123456', db='zoro', port=3306, charset='utf8')
