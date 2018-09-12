@@ -150,25 +150,25 @@ class MovieSpider():
                 # time_long = movie_detail_info[12]  # movie_detail_info[13]
                 # director = movie_detail_info[13]  # movie_detail_info[14]
                 # performer = movie_detail_info[15]
-                # if not translate:
-                #     translate = ""
-                # if not movie_image_url:
-                #     movie_image_url = ""
-                # if not movie_image2_url:
-                #     movie_image2_url = ""
-                # if not movie_score:
-                #     movie_score = 8
-                # if not area:
-                #     area = ''
-                # if not language:
-                #     language = ""
-                # if not release_detail_time:
-                #     release_detail_time = ""
-                # if not download_url:
-                #     download_url = "暂无该资源"
-                # if not movie_index_name:
-                #     movie_index_name = ""
-
+                if not translate:
+                    translate = ""
+                if not movie_image_url:
+                    movie_image_url = ""
+                if not movie_image2_url:
+                    movie_image2_url = ""
+                if not movie_score:
+                    movie_score = 8
+                if not area:
+                    area = ''
+                if not language:
+                    language = ""
+                if not release_detail_time:
+                    release_detail_time = ""
+                if not download_url:
+                    download_url = "暂无该资源"
+                if not movie_index_name:
+                    movie_index_name = ""
+                print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
                 if self.findFromDB(title_1=translate):
                     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
 
