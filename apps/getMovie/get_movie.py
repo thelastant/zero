@@ -169,7 +169,7 @@ class MovieSpider():
                 if not movie_index_name:
                     movie_index_name = ""
                 print(movie_index_name)
-                print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
+                # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
                 # if self.findFromDB(title_1=translate):
                 #     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
                 #     continue
@@ -181,7 +181,8 @@ class MovieSpider():
                                       release_time=release_detail_time, download_url=download_url,
                                       remark=movie_index_name)
                 except Exception as e:
-                    print(e,"fail to save into db!!!")
+                    print(e, translate,"fail to save into db!!!")
+                    continue
                 print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", translate)
 
     def findFromDB(self, title_1):
