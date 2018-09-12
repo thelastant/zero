@@ -168,7 +168,24 @@ class MovieSpider():
                     download_url = "暂无该资源"
                 if not movie_index_name:
                     movie_index_name = ""
+                if not release_time:
+                    release_time = 0
+                if not movie_type2:
+                    movie_type2 = ""
+                if not subtitle:
+                    subtitle = ""
                 print(movie_index_name)
+                print(translate)
+                print(movie_image_url)
+                print(movie_image2_url)
+                print(movie_score)
+                print(area)
+                print(language)
+                print(release_detail_time)
+                print(download_url)
+                print(release_time)
+                print(movie_type2)
+                print(subtitle)
                 # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
                 # if self.findFromDB(title_1=translate):
                 #     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
@@ -181,7 +198,7 @@ class MovieSpider():
                                       release_time=release_detail_time, download_url=download_url,
                                       remark=movie_index_name)
                 except Exception as e:
-                    print(e, translate,"fail to save into db!!!")
+                    print(e, translate, "fail to save into db!!!")
                     continue
                 print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", translate)
 
@@ -305,7 +322,7 @@ class AmazonSpiderJob():
 def run():
     print("start spider====")
     movie_obj = MovieSpider()
-    for i in range(2, 301):
+    for i in range(66, 301):
         print(i)
         movie_obj.getDataById(page=i)
     print("finish spider")
