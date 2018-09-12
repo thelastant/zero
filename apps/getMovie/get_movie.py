@@ -68,111 +68,121 @@ class MovieSpider():
 
         url = "https://www.dy2018.com/html/gndy/dyzz/index.html"  # 首页
         url2 = "https://www.dy2018.com/html/gndy/dyzz/index_%d.html" % page  # 第二页
-        ret = requests.get(url=url2, headers=self.randHeader()).text
-        html = etree.HTML(ret)
-        movie_url_list = html.xpath("//tr[2]/td[2]/b/a/@href")  # 爬取每页的电影列表的url
+        try:
+            ret = requests.get(url=url2, headers=self.randHeader()).text
+        except:
+            ret = None
+        if ret:
+            html = etree.HTML(ret)
+            movie_url_list = html.xpath("//tr[2]/td[2]/b/a/@href")  # 爬取每页的电影列表的url
 
-        print("test1")
-        for movie_url in movie_url_list:
-            movie_url = "https://www.dy2018.com" + movie_url  # 电影详情的链接
-            ret2 = requests.get(url=movie_url, headers=self.randHeader())
-            ret2.encoding = "GBK"
-            print(ret2.encoding, ">>>>>>>>>>>>>>>>>>>>???????")
-            ret2 = ret2.text
-            html = etree.HTML(ret2)
+            print("test1")
+            for movie_url in movie_url_list:
+                movie_url = "https://www.dy2018.com" + movie_url  # 电影详情的链接
 
-            try:
-                download_url = html.xpath("//*[@id='Zoom']/table[1]/tbody/tr/td//a/text()")  # 电影的下载链接
-            except:
-                continue
-            try:
-                movie_image_url = html.xpath("//p[1]/img/@src")  # 电影的封面图片链接
-            except:
-                movie_image_url = ""
-            try:
-                movie_image2_url = html.xpath("//div/img/@src")  # 电影的内容介绍图片链接
-            except:
-                movie_image2_url = ""
-            try:
-                movie_score = float(html.xpath("//div[2]/ul/div[1]/span[1]/strong/text()")[0])  # 电影评分
-            except:
-                movie_score=0
-            # movie_type = html.xpath("//div[2]/ul/div[1]/span[2]/a/text()")  # 电影类型
-            # movie_release_time = html.xpath("//div[6]/div[2]/ul/div[1]/span[3]/text()")  # 发布时间
-            try:
-                movie_detail_info = html.xpath("//p[position()>2 and position()<20]/text()")  # 电影详细信息
-            except:
-                movie_detail_info = ""
-            try:
-                movie_index_name = html.xpath("//div[2]/div[6]/div[1]/h1/text()")  # 电影页面名称
-            except:
-                movie_index_name = ""
-            try:
-                translate = movie_detail_info[0]
-            except:
-                continue
-            try:
-                movie_name = movie_detail_info[1]
-            except:
-                movie_name = ""
-            try:
-                release_time = movie_detail_info[2]
-            except:
-                release_time = 0
-            try:
-                area = movie_detail_info[2]  # movie_detail_info[3]
-            except:
-                area = ""
-            try:
-                movie_type2 = movie_detail_info[3]  # movie_detail_info[4]
-            except:
-                movie_type2 = ""
-            try:
-                language = movie_detail_info[4]  # movie_detail_info[5]
-            except:
-                language = ""
-            try:
-                subtitle = movie_detail_info[5]  # movie_detail_info[6]
-            except:
-                subtitle = ""
-            try:
-                release_detail_time = movie_detail_info[6]  # movie_detail_info[7]  # 需要正则去掉中文，再转成时间戳
-            except:
-                release_detail_time = ""
-            # size = ''
-            # time_long = movie_detail_info[12]  # movie_detail_info[13]
-            # director = movie_detail_info[13]  # movie_detail_info[14]
-            # performer = movie_detail_info[15]
-            # if not translate:
-            #     translate = ""
-            # if not movie_image_url:
-            #     movie_image_url = ""
-            # if not movie_image2_url:
-            #     movie_image2_url = ""
-            # if not movie_score:
-            #     movie_score = 8
-            # if not area:
-            #     area = ''
-            # if not language:
-            #     language = ""
-            # if not release_detail_time:
-            #     release_detail_time = ""
-            # if not download_url:
-            #     download_url = "暂无该资源"
-            # if not movie_index_name:
-            #     movie_index_name = ""
+                try:
+                    ret2 = requests.get(url=movie_url, headers=self.randHeader())
+                except:
+                    continue
+                ret2.encoding = "GBK"
+                ret2 = ret2.text
+                html = etree.HTML(ret2)
 
-            if self.findFromDB(title_1=translate):
-                continue
-            try:
-                self.insertIntoDB(title_1=translate, image_url_1=movie_image_url,
-                                  image_url_2=movie_image2_url, score=movie_score, show_time=release_time, area=area,
-                                  type=movie_type2, language=language, subtitle=subtitle,
-                                  release_time=release_detail_time, download_url=download_url, remark=movie_index_name)
-                print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", translate)
-            except:
-                pass
+                try:
+                    download_url = html.xpath("//*[@id='Zoom']/table[1]/tbody/tr/td//a/text()")  # 电影的下载链接
+                except:
+                    continue
+                try:
+                    movie_image_url = html.xpath("//p[1]/img/@src")  # 电影的封面图片链接
+                except:
+                    movie_image_url = ""
+                try:
+                    movie_image2_url = html.xpath("//div/img/@src")  # 电影的内容介绍图片链接
+                except:
+                    movie_image2_url = ""
+                try:
+                    movie_score = float(html.xpath("//div[2]/ul/div[1]/span[1]/strong/text()")[0])  # 电影评分
+                except:
+                    movie_score = 0
+                # movie_type = html.xpath("//div[2]/ul/div[1]/span[2]/a/text()")  # 电影类型
+                # movie_release_time = html.xpath("//div[6]/div[2]/ul/div[1]/span[3]/text()")  # 发布时间
+                try:
+                    movie_detail_info = html.xpath("//p[position()>2 and position()<20]/text()")  # 电影详细信息
+                except:
+                    movie_detail_info = ""
+                try:
+                    movie_index_name = html.xpath("//div[2]/div[6]/div[1]/h1/text()")  # 电影页面名称
+                except:
+                    movie_index_name = ""
+                try:
+                    translate = movie_detail_info[0]
+                except:
+                    continue
+                try:
+                    movie_name = movie_detail_info[1]
+                except:
+                    movie_name = ""
+                try:
+                    release_time = movie_detail_info[2]
+                except:
+                    release_time = 0
+                try:
+                    area = movie_detail_info[2]  # movie_detail_info[3]
+                except:
+                    area = ""
+                try:
+                    movie_type2 = movie_detail_info[3]  # movie_detail_info[4]
+                except:
+                    movie_type2 = ""
+                try:
+                    language = movie_detail_info[4]  # movie_detail_info[5]
+                except:
+                    language = ""
+                try:
+                    subtitle = movie_detail_info[5]  # movie_detail_info[6]
+                except:
+                    subtitle = ""
+                try:
+                    release_detail_time = movie_detail_info[6]  # movie_detail_info[7]  # 需要正则去掉中文，再转成时间戳
+                except:
+                    release_detail_time = ""
+                # size = ''
+                # time_long = movie_detail_info[12]  # movie_detail_info[13]
+                # director = movie_detail_info[13]  # movie_detail_info[14]
+                # performer = movie_detail_info[15]
+                # if not translate:
+                #     translate = ""
+                # if not movie_image_url:
+                #     movie_image_url = ""
+                # if not movie_image2_url:
+                #     movie_image2_url = ""
+                # if not movie_score:
+                #     movie_score = 8
+                # if not area:
+                #     area = ''
+                # if not language:
+                #     language = ""
+                # if not release_detail_time:
+                #     release_detail_time = ""
+                # if not download_url:
+                #     download_url = "暂无该资源"
+                # if not movie_index_name:
+                #     movie_index_name = ""
 
+                if self.findFromDB(title_1=translate):
+                    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>this file has exit", translate)
+
+                    continue
+                try:
+                    self.insertIntoDB(title_1=translate, image_url_1=movie_image_url,
+                                      image_url_2=movie_image2_url, score=movie_score, show_time=release_time,
+                                      area=area,
+                                      type=movie_type2, language=language, subtitle=subtitle,
+                                      release_time=release_detail_time, download_url=download_url,
+                                      remark=movie_index_name)
+                    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>success", translate)
+                except:
+                    pass
 
     def findFromDB(self, title_1):
         db = pymysql.connect(host='45.63.51.252', user='root', passwd='123456', db='zoro', port=3306, charset='utf8')
