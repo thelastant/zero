@@ -61,9 +61,13 @@ class MovieSpider():
 
         url = "https://www.dy2018.com/html/gndy/dyzz/index.html"  # 首页
         url2 = "https://www.dy2018.com/html/gndy/dyzz/index_%d.html" % page  # 第二页
-        ret = requests.get(url=url2, headers=self.randHeader()).text
-        html = etree.HTML(ret)
-        movie_url_list = html.xpath("//tr[2]/td[2]/b/a/@href")  # 爬取每页的电影列表的url
+        try:
+            ret = requests.get(url=url2, headers=self.randHeader()).text
+        except:
+            ret = None
+        if ret:
+            html = etree.HTML(ret)
+            movie_url_list = html.xpath("//tr[2]/td[2]/b/a/@href")  # 爬取每页的电影列表的url
 
         for movie_url in movie_url_list:
             movie_url = "https://www.dy2018.com" + movie_url  # 电影详情的链接
@@ -194,7 +198,7 @@ class AmazonSpiderJob():
 def run():
     print("start spider====")
     movie_obj = MovieSpider()
-    for i in range(2, 301):
+    for i in range(66, 301):
         print(i)
         movie_obj.getDataById(page=i)
     print("finish spider")
