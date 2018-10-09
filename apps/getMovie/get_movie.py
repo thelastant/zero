@@ -116,7 +116,11 @@ class MovieSpider():
             print(movie_release_time, "===time")
             print(movie_index_name, "========index")
             print(translate, "=====translate")
-            if self.findFromDB(title=translate):
+            try:
+                is_save = self.findFromDB(title=translate)
+            except:
+                is_save = None
+            if is_save:
                 print("请勿重复存储")
                 continue
             try:
